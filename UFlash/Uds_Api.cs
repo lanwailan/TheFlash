@@ -161,18 +161,9 @@ namespace UFlash_config
             Diag_ReqBuffer[0] = 0x2E;
             Diag_ReqBuffer[1] = (byte)(RecordId >> 8);
             Diag_ReqBuffer[2] = (byte)RecordId;
-
-            fs_logid = new FileStream(binfilepath, FileMode.Open);
-            fs_logid.Position = offset;
-            br_logid = new BinaryReader(fs_logid);
-
-            if (RecordId == 0xF1F7)
-            {
-                br_logid.Read(Diag_ReqBuffer, 3, RecordLength);
-            }
-            br_logid.Close();
-            fs_logid.Close();
-            if (Uds_TxMsg(Diag_ReqBuffer, 21) == Diag_StatusAL_e.SBDLITE_STAL_POS)
+            Diag_ReqBuffer[x] = (byte)x
+           
+            if (Uds_TxMsg(Diag_ReqBuffer, x+1) == Diag_StatusAL_e.SBDLITE_STAL_POS)
             {
                 return 1;
             }
